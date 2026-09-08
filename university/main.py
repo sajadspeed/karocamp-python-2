@@ -10,12 +10,16 @@ min_score = None
 
 avg = 0
 
+grades = [20, 15, 18, 10]
+
 
 while True:
     print("--- UN Management ---")
     print("1. Insert Student Information")
     print("2. Insert Grades")
     print("3. Show Student Report")
+    print("4. Show grades")
+    print("5. Remove grade")
 
     print("0. Exit")
 
@@ -40,6 +44,7 @@ while True:
                 break
 
             score = float(score)
+            grades.append(score)
 
             score_sum += score
 
@@ -53,6 +58,53 @@ while True:
     # Show Student Report
     elif command == "3":
         pass
+
+    elif command == "4":
+        if len(grades) > 0:
+            ### Show Grades
+            i = 0
+            while i < len(grades):
+                print(i + 1, f" => ** {grades[i]} **")
+
+                i += 1
+            ###
+
+        else:
+            print("No grades available.")
+
+    elif command == "5":
+        ### Show Grades
+
+        i = 0
+        while i < len(grades):
+            print(i + 1, f" => ** {grades[i]} **")
+
+            i += 1
+        ###
+
+        grade = float(input("Enter grade for remove: "))
+
+        ### Find grade in grades
+        found_grade = False
+
+        i = 0
+        while i < len(grades):
+            if grade == grades[i]:
+                found_grade = True
+            i += 1
+
+        if found_grade:
+            grades.remove(grade)
+        else:
+            print("Not found.")
+
+        ### Show Grades
+        i = 0
+        while i < len(grades):
+            print(i + 1, f" => ** {grades[i]} **")
+
+            i += 1
+        ###
 
     # Exit
     elif command == "0":
