@@ -1,3 +1,6 @@
+from functions import show_separator
+
+
 name = None
 last_name = None
 code = None
@@ -29,14 +32,19 @@ while True:
 
     # Insert Student Info
     if command == "1":
+        show_separator()
+
         name = input("Name:")
         last_name = input("Last Name:")
         code = input("Student Number:")
 
         print("Student's information saved.")
 
+        show_separator()
     # Insert Grades
     elif command == "2":
+        show_separator()
+
         print("Type Exit in order to quit. Numbers should be between 0 to 20")
         while True:
             score = input(f"Number {score_count + 1}:")
@@ -55,11 +63,17 @@ while True:
 
             score_count += 1
 
+        show_separator()
+
     # Show Student Report
     elif command == "3":
-        pass
+        show_separator()
+        # Code in here
+        show_separator()
 
     elif command == "4":
+        show_separator()
+
         if len(grades) > 0:
             ### Show Grades
             i = 0
@@ -72,7 +86,10 @@ while True:
         else:
             print("No grades available.")
 
+        show_separator()
     elif command == "5":
+        show_separator()
+
         ### Show Grades
 
         i = 0
@@ -105,6 +122,8 @@ while True:
 
             i += 1
         ###
+
+        show_separator()
 
     # Exit
     elif command == "0":
