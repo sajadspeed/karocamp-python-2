@@ -1,4 +1,4 @@
-from functions import show_separator
+from functions import show_separator, show_grades, get_status_by_avg
 
 
 name = None
@@ -32,15 +32,14 @@ while True:
 
     # Insert Student Info
     if command == "1":
-        show_separator()
+        show_separator("Student Info")
 
         name = input("Name:")
         last_name = input("Last Name:")
         code = input("Student Number:")
-
         print("Student's information saved.")
 
-        show_separator()
+        show_separator(char_sep_count=40)
     # Insert Grades
     elif command == "2":
         show_separator()
@@ -68,36 +67,34 @@ while True:
     # Show Student Report
     elif command == "3":
         show_separator()
-        # Code in here
+
+        # Calculating Average Score
+        avg = score_sum / (len(grades))
+
+        status_dict = get_status_by_avg(avg)
+        status = status_dict["status"]
+        quote = status_dict["quote"]
+
+        print()
+        print(f"Full Name: {name} {last_name}")
+        print(f"Student ID: {code}")
+        print(f"Average: {avg}")
+        print(f"Status: {status}")
+        print(f"Highest Score: {max_score}")
+        print(f"Lowest Score: {min_score}")
+        print(quote)
         show_separator()
 
     elif command == "4":
         show_separator()
 
-        if len(grades) > 0:
-            ### Show Grades
-            i = 0
-            while i < len(grades):
-                print(i + 1, f" => ** {grades[i]} **")
-
-                i += 1
-            ###
-
-        else:
-            print("No grades available.")
+        show_grades(grades)
 
         show_separator()
     elif command == "5":
         show_separator()
 
-        ### Show Grades
-
-        i = 0
-        while i < len(grades):
-            print(i + 1, f" => ** {grades[i]} **")
-
-            i += 1
-        ###
+        show_grades(grades)
 
         grade = float(input("Enter grade for remove: "))
 
@@ -115,13 +112,7 @@ while True:
         else:
             print("Not found.")
 
-        ### Show Grades
-        i = 0
-        while i < len(grades):
-            print(i + 1, f" => ** {grades[i]} **")
-
-            i += 1
-        ###
+        show_grades(grades)
 
         show_separator()
 
