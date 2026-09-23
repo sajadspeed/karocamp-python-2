@@ -71,9 +71,7 @@ while True:
         # Calculating Average Score
         avg = score_sum / (len(grades))
 
-        status_dict = get_status_by_avg(avg)
-        status = status_dict["status"]
-        quote = status_dict["quote"]
+        status, quote = get_status_by_avg(avg)
 
         print()
         print(f"Full Name: {name} {last_name}")

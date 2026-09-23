@@ -33,7 +33,7 @@ def show_grades(grades):
 
 def get_status_by_avg(avg):
     """
-    return {status: "", quote: ""}
+    return status, quote
     """
     status = ""
     quote = ""
@@ -65,4 +65,4 @@ def get_status_by_avg(avg):
         status = "Not valid"
         quote = "What are you doing lil bro? enter a proper score."
 
-    return {"status": status, "quote": quote}
+    return status, quote
