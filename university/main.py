@@ -1,4 +1,8 @@
 from functions import show_separator, show_grades, get_status_by_avg
+from settings import USER_INFO_FILE_PATH, USER_GRADES_FILE_PATH
+import storage
+
+import os
 
 
 name = None
@@ -13,7 +17,19 @@ min_score = None
 
 avg = 0
 
-grades = [20, 15, 18, 10]
+grades = []
+
+if os.path.isfile(USER_INFO_FILE_PATH):
+    with open(USER_INFO_FILE_PATH) as file:
+        name = file.readline().replace("\n", "")
+        last_name = file.readline().replace("\n", "")
+        code = file.readline().replace("\n", "")
+
+if os.path.isfile(USER_GRADES_FILE_PATH):
+    with open(USER_GRADES_FILE_PATH) as file:
+        for grade in file.readlines():
+            grade = grade.replace("\n", "")
+            grades.append(grade)
 
 
 while True:
@@ -37,32 +53,39 @@ while True:
         name = input("Name:")
         last_name = input("Last Name:")
         code = input("Student Number:")
+
+        with open(USER_INFO_FILE_PATH, "w") as file:
+            file.writelines(f"{name}\n{last_name}\n{code}")
+
         print("Student's information saved.")
 
         show_separator(char_sep_count=40)
+        os.system("cls")
     # Insert Grades
     elif command == "2":
         show_separator()
 
         print("Type Exit in order to quit. Numbers should be between 0 to 20")
         while True:
-            score = input(f"Number {score_count + 1}:")
-            if score.lower() == "exit":
+            grade = input(f"Number {score_count + 1}:")
+            if grade.lower() == "exit":
                 break
 
-            score = float(score)
-            grades.append(score)
+            grade = float(grade)
+            grades.append(grade)
+            storage.garade_save(grade)
 
-            score_sum += score
+            score_sum += grade
 
-            if max_score is None or score > max_score:
-                max_score = score
-            if min_score is None or score < min_score:
-                min_score = score
+            if max_score is None or grade > max_score:
+                max_score = grade
+            if min_score is None or grade < min_score:
+                min_score = grade
 
             score_count += 1
 
         show_separator()
+        os.system("cls")
 
     # Show Student Report
     elif command == "3":

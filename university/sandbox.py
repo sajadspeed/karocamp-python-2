@@ -1,3 +1,6 @@
-my_tuple = (1, 2, 3)
+import os
 
-a, b, c = my_tuple
+if os.path.isfile("data/user_info.txt"):
+    print("Hoora")
+else:
+    print("Na Hoora")
