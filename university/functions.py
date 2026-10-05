@@ -1,3 +1,7 @@
+import os
+from settings import USER_LOGIN_INFO_FILE_PATH
+
+
 def show_separator(title="", char_sep="=", char_sep_count=40):
     print()
     if title == "":
@@ -66,3 +70,31 @@ def get_status_by_avg(avg):
         quote = "What are you doing lil bro? enter a proper score."
 
     return status, quote
+
+
+def login(username, password) -> bool:
+    username_org = None
+    password_org = None
+    with open(USER_LOGIN_INFO_FILE_PATH) as file:
+        username_org = clear_str(file.readline())
+        password_org = clear_str(file.readline())
+
+    print(username_org)
+    print(password_org)
+
+    if username == username_org and password == password_org:
+        return True
+    return False
+
+
+def signup(username, password):
+    with open(USER_LOGIN_INFO_FILE_PATH, "w") as file:
+        file.write(username + "\n" + password)
+
+
+def clear_str(string: str):
+    return string.strip().replace("\n", "")
+
+
+def clear_screen():
+    os.system("cls")

@@ -1,8 +1,16 @@
-from functions import show_separator, show_grades, get_status_by_avg
+import os
+
+from functions import (
+    show_separator,
+    show_grades,
+    get_status_by_avg,
+    login,
+    clear_str,
+    signup,
+    clear_screen,
+)
 from settings import USER_INFO_FILE_PATH, USER_GRADES_FILE_PATH
 import storage
-
-import os
 
 
 name = None
@@ -19,16 +27,53 @@ avg = 0
 
 grades = []
 
+## Login/Signup
+
+show_separator("Welcome")
+
+while True:
+    print("1. Sign up")
+    print("2. Sign in")
+    choise = input("Your command: ")
+
+    if choise == "1":
+        clear_screen()
+        show_separator("Signup")
+        username = clear_str(input("Enter your username: "))
+        password = clear_str(input("Enter your password: "))
+
+        signup(username, password)
+
+        clear_screen()
+
+    elif choise == "2":
+        clear_screen()
+        show_separator("Login")
+
+        username = input("Enter your username: ")
+        password = input("Enter your password: ")
+
+        if login(username, password) == False:
+            print("Username or Password is wrong. BYE.")
+
+        clear_screen()
+
+        break
+
+
+##
+
+
 if os.path.isfile(USER_INFO_FILE_PATH):
     with open(USER_INFO_FILE_PATH) as file:
-        name = file.readline().replace("\n", "")
-        last_name = file.readline().replace("\n", "")
-        code = file.readline().replace("\n", "")
+        name = clear_str(file.readline())
+        last_name = clear_str(file.readline())
+        code = clear_str(file.readline())
 
 if os.path.isfile(USER_GRADES_FILE_PATH):
     with open(USER_GRADES_FILE_PATH) as file:
         for grade in file.readlines():
-            grade = grade.replace("\n", "")
+            grade = clear_str(grade)
             grades.append(grade)
 
 
@@ -60,7 +105,7 @@ while True:
         print("Student's information saved.")
 
         show_separator(char_sep_count=40)
-        os.system("cls")
+        clear_screen()
     # Insert Grades
     elif command == "2":
         show_separator()
@@ -85,7 +130,7 @@ while True:
             score_count += 1
 
         show_separator()
-        os.system("cls")
+        clear_screen()
 
     # Show Student Report
     elif command == "3":
