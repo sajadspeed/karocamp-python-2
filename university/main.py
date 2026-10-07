@@ -25,7 +25,7 @@ min_score = None
 
 avg = 0
 
-grades = []
+courses = []
 
 ## Login/Signup
 
@@ -74,7 +74,7 @@ if os.path.isfile(USER_GRADES_FILE_PATH):
     with open(USER_GRADES_FILE_PATH) as file:
         for grade in file.readlines():
             grade = clear_str(grade)
-            grades.append(grade)
+            courses.append(grade)
 
 
 while True:
@@ -117,7 +117,7 @@ while True:
                 break
 
             grade = float(grade)
-            grades.append(grade)
+            courses.append(grade)
             storage.garade_save(grade)
 
             score_sum += grade
@@ -137,7 +137,7 @@ while True:
         show_separator()
 
         # Calculating Average Score
-        avg = score_sum / (len(grades))
+        avg = score_sum / (len(courses))
 
         status, quote = get_status_by_avg(avg)
 
@@ -154,13 +154,13 @@ while True:
     elif command == "4":
         show_separator()
 
-        show_grades(grades)
+        show_grades(courses)
 
         show_separator()
     elif command == "5":
         show_separator()
 
-        show_grades(grades)
+        show_grades(courses)
 
         grade = float(input("Enter grade for remove: "))
 
@@ -168,17 +168,17 @@ while True:
         found_grade = False
 
         i = 0
-        while i < len(grades):
-            if grade == grades[i]:
+        while i < len(courses):
+            if grade == courses[i]:
                 found_grade = True
             i += 1
 
         if found_grade:
-            grades.remove(grade)
+            courses.remove(grade)
         else:
             print("Not found.")
 
-        show_grades(grades)
+        show_grades(courses)
 
         show_separator()
 
