@@ -1,0 +1,24 @@
+<h1>Users</h1>
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Meli Code</th>
+        <th>Age</th>
+        <th>Phone</th>
+        <th>Address</th>
+    </tr>
+    {% for user in users %}
+    <tr>
+        {% if user["name"] == "Ilia" %}
+        <td>🍓</td>
+        {% else %}
+        <td>{{user["name"]}}</td>
+        {% endif %}
+        <td>{{user["national_code"]}}</td>
+        <td>{{user["age"]}}</td>
+        <td>{{user["phone"]}}</td>
+        <td>{{user["address"]}}</td>
+    </tr>
+    {% endfor %}
+</table>

@@ -1,0 +1,31 @@
+[
+    {
+        "username": "roya",
+        "password": "roya@1234",
+        "is_verified": true,
+        "skills": [
+            "Math",
+            "Dance"
+        ],
+        "profile": {
+            "name": "Roya Joon",
+            "age": 26,
+            "city": "Esf"
+        }
+    },
+    {
+        "username": "Ilia",
+        "password": "ksjdfk",
+        "is_verified": false,
+        "skills": [
+            "Dance",
+            "Programming",
+            "Drive"
+        ],
+        "profile": {
+            "name": "Ilia Joon",
+            "age": 22,
+            "city": "Tehran"
+        }
+    }
+]
